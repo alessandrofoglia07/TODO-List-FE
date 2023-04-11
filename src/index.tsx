@@ -3,13 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AuthProvider } from 'react-auth-kit';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+let persistor = persistStore(store);
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider authType='cookie' authName='auth' cookieDomain={window.location.hostname} cookieSecure={false}>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
+    </AuthProvider>
   </React.StrictMode>
 );
 
