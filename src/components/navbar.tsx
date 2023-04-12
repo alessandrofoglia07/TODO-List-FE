@@ -76,7 +76,7 @@ const NavBar = () => {
                                 </IconButton>
                             ) : (
                                 <Stack direction='row' spacing={4} sx={{ flexGrow: 1, justifyContent: 'flex-end' }}>
-                                    <Button color='inherit' sx={{ fontSize: 22, textTransform: 'none', fontFamily: 'Nunito', right: '80px' }} href='/notes'>
+                                    <Button color='inherit' sx={{ fontSize: 22, textTransform: 'none', fontFamily: 'Nunito', right: '80px' }} href='/'>
                                         Notes
                                     </Button>
                                     <Button color='inherit' sx={{ fontSize: 22, textTransform: 'none', fontFamily: 'Nunito', right: '80px' }} href='/profile'>
@@ -97,7 +97,7 @@ const NavBar = () => {
                     </Stack>
                     <Menu id='smaller-screen-menu' anchorEl={anchorEl} open={open} onClose={handleCloseMenu} MenuListProps={{ 'aria-labelledby': 'smaller-screen-button' }}>
                         <MenuItem sx={{ justifyContent: 'center' }}>
-                            <Button color='inherit' sx={{ fontSize: 22, textTransform: 'none', fontFamily: 'Nunito' }} href='/notes'>
+                            <Button color='inherit' sx={{ fontSize: 22, textTransform: 'none', fontFamily: 'Nunito' }} href='/'>
                                 Notes
                             </Button>
                         </MenuItem>

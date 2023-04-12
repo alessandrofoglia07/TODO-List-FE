@@ -3,6 +3,9 @@
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap');
+/* font-famiiy: 'Nunito', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&display=swap');
+/* font-family: 'Schibsted Grotesk', sans-serif; */
 
 .navbarTypography span {
   font-weight: 600;
