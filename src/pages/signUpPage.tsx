@@ -51,7 +51,6 @@ const SignUpPage = () => {
         }
     });
 
-    // eslint-disable-next-line no-useless-escape
     const emailRegex =
         // eslint-disable-next-line no-useless-escape
         /^("(?:[!#-\[\]-\u{10FFFF}]|\\[\t -\u{10FFFF}])*"|[!#-'*+\-/-9=?A-Z\^-\u{10FFFF}](?:\.?[!#-'*+\-/-9=?A-Z\^-\u{10FFFF}])*)@([!#-'*+\-/-9=?A-Z\^-\u{10FFFF}](?:\.?[!#-'*+\-/-9=?A-Z\^-\u{10FFFF}])*|\[[!-Z\^-\u{10FFFF}]*\])$/u;
@@ -76,15 +75,20 @@ const SignUpPage = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const res = await axios.post('http://localhost:5000/api/signup', inputs);
-        if (res.data.message === 'Email is already registered') {
-            console.log('%cAxios: Email already exists', 'color: cyan');
-            setSignupError(true);
-        } else if (res.data.message === 'User created') {
-            console.log('%cAxios: Account created', 'color: cyan');
-            setSignupSuccess(true);
-        } else if (res.status === 500) {
-            console.log('Server error');
-            alert('Server error');
+
+        switch (res.data.message) {
+            case 'Email is already registered':
+                console.log('%cAxios: Email already exists', 'color: cyan');
+                setSignupError(true);
+                break;
+            case 'User created':
+                console.log('%cAxios: Account created', 'color: cyan');
+                setSignupSuccess(true);
+                break;
+            default:
+                console.log('Server error');
+                alert('Server error');
+                break;
         }
     };
 

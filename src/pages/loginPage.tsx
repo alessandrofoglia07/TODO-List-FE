@@ -74,24 +74,29 @@ const LoginPage = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const res = await axios.post('http://localhost:5000/api/login', inputs);
-        if (res.data.message === 'Login successful') {
-            signIn({
-                token: res.data.token,
-                tokenType: 'Bearer',
-                expiresIn: 28800,
-                authState: {
-                    id: res.data.id,
-                    email: res.data.email,
-                    username: res.data.username
-                }
-            });
-            navigate('/chat');
-        } else if (res.data.message === 'Incorrect password') {
-            setIncorrectPwdError(true);
-        } else if (res.data.message === 'Email not registered') {
-            setEmailNotRegisteredError(true);
-        } else {
-            setServerError(true);
+        switch (res.data.message) {
+            case 'Login successful':
+                signIn({
+                    token: res.data.token,
+                    tokenType: 'Bearer',
+                    expiresIn: 28800,
+                    authState: {
+                        id: res.data.id,
+                        email: res.data.email,
+                        username: res.data.username
+                    }
+                });
+                navigate('/chat');
+                break;
+            case 'Incorrect password':
+                setIncorrectPwdError(true);
+                break;
+            case 'Email not registered':
+                setEmailNotRegisteredError(true);
+                break;
+            default:
+                setServerError(true);
+                break;
         }
     };
 
