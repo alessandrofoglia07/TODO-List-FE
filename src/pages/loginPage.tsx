@@ -26,7 +26,6 @@ const InputTextField = styled(TextField)({
 });
 
 const LoginPage = () => {
-
     const signIn = useSignIn();
     const navigate = useNavigate();
     const auth = useAuthUser();
@@ -82,11 +81,10 @@ const LoginPage = () => {
                     expiresIn: 28800,
                     authState: {
                         id: res.data.id,
-                        email: res.data.email,
-                        username: res.data.username
+                        email: res.data.email
                     }
                 });
-                navigate('/chat');
+                navigate('/');
                 break;
             case 'Incorrect password':
                 setIncorrectPwdError(true);
@@ -163,7 +161,11 @@ const LoginPage = () => {
                                     InputLabelProps={{ style: { color: 'white', fontSize: 26 } }}
                                     sx={{ width: handleWidthChange() }}
                                 />
-                                <Button type='submit' variant='text' sx={{ fontSize: '2rem', height: '80px', width: '160px', color: 'white', position: 'relative', top: '7vh' }} className='btnSubmit'>
+                                <Button
+                                    type='submit'
+                                    variant='text'
+                                    sx={{ fontSize: '2rem', height: '80px', width: '160px', color: 'white', position: 'relative', top: '7vh' }}
+                                    className='btnSubmit'>
                                     Submit
                                 </Button>
                             </Stack>

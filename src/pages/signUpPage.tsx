@@ -182,7 +182,7 @@ const SignUpPage = () => {
                 </Snackbar>
                 <Snackbar open={signupSuccess} autoHideDuration={2000} onClose={handleErrorAlertClose}>
                     <Alert severity='success' variant='filled' onClose={handleErrorAlertClose}>
-                        Sign up successful. You will receive a confirmation email soon.
+                        Sign up successful. Go to login page.
                     </Alert>
                 </Snackbar>
             </div>

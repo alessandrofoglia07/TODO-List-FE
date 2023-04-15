@@ -12,6 +12,15 @@
   margin-left: 2px;
 }
 
+.menuLight ul {
+  background-color: white;
+}
+
+.menuDark ul {
+  background-color: #424242;
+  color: white;
+}
+
 /* Smaller screen (mobile) */
 @media only screen and (max-width: 1100px) {
   .accessForms {

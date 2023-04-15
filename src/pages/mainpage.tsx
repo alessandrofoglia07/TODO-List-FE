@@ -20,7 +20,6 @@ const lightTheme = createTheme({
 });
 
 const MainPage = () => {
-
     const theme = useSelector((state: any) => state.theme.theme);
 
     const [notes, setNotes] = useState<any[]>([]);
@@ -48,13 +47,11 @@ const MainPage = () => {
             <NavBar />
             <Stack direction='column' display='flex' alignItems='center' sx={{ position: 'absolute', mt: '120px', width: '100%' }}>
                 <ThemeProvider theme={muiTheme}>
-                    {
-                        writing ? (
-                            <WriteNote callback={handleCloseWriteNote} />
-                        ) : (
-                            <TextField variant='outlined' value='Write a note' sx={{ width: '50vw' }} InputProps={{ readOnly: true }} onClick={handleClick} />
-                        )
-                    }
+                    {writing ? (
+                        <WriteNote callback={handleCloseWriteNote} />
+                    ) : (
+                        <TextField variant='outlined' value='Write a note' sx={{ width: '50vw' }} InputProps={{ readOnly: true }} onClick={handleClick} />
+                    )}
                 </ThemeProvider>
             </Stack>
         </div>

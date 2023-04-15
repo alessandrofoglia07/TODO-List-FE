@@ -6,13 +6,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
 
 export const ProfileDashboardPage = () => {
-
     const customTheme = createTheme({
         palette: {
             primary: {
-                main: '#ffffff',
-            },
-        },
+                main: '#ffffff'
+            }
+        }
     });
 
     const [elevation, setElevation] = useState(12);
@@ -27,7 +26,7 @@ export const ProfileDashboardPage = () => {
             form.addEventListener('mouseleave', () => {
                 setElevation(12);
             });
-        };
+        }
     }, []);
 
     const handleResize = () => {

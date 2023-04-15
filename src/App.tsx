@@ -9,28 +9,42 @@ import { useSelector } from 'react-redux';
 import { RequireAuth } from 'react-auth-kit';
 
 function App() {
-  const theme = useSelector((state: any) => state.theme.theme);
+    const theme = useSelector((state: any) => state.theme.theme);
 
-  useEffect(() => {
-    if (theme === 'light') {
-      document.body.style.backgroundColor = '#FFFFFF';
-    } else if (theme === 'dark') {
-      document.body.style.backgroundColor = '#303030';
-    }
-  }, [theme]);
+    useEffect(() => {
+        if (theme === 'light') {
+            document.body.style.backgroundColor = '#FFFFFF';
+        } else if (theme === 'dark') {
+            document.body.style.backgroundColor = '#303030';
+        }
+    }, [theme]);
 
-  return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path='/' element={<RequireAuth loginPath='/login'><MainPage /></RequireAuth>} />
-          <Route path='/profile' element={<RequireAuth loginPath='/login'><ProfilePage /></RequireAuth>} />
-          <Route path='/signup' element={<SignUpPage />} />
-          <Route path='/login' element={<LoginPage />} />
-        </Routes>
-      </Router>
-    </div>
-  );
+    return (
+        <div className='App'>
+            <Router>
+                <Routes>
+                    <Route
+                        path='/'
+                        element={
+                            <RequireAuth loginPath='/login'>
+                                <MainPage />
+                            </RequireAuth>
+                        }
+                    />
+                    <Route
+                        path='/profile'
+                        element={
+                            <RequireAuth loginPath='/login'>
+                                <ProfilePage />
+                            </RequireAuth>
+                        }
+                    />
+                    <Route path='/signup' element={<SignUpPage />} />
+                    <Route path='/login' element={<LoginPage />} />
+                </Routes>
+            </Router>
+        </div>
+    );
 }
 
 export default App;
