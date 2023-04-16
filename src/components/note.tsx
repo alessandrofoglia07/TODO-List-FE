@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useAuthHeader } from 'react-auth-kit';
 
-const Note = (props: { title: string; content: string; id: number }) => {
+const Note = (props: { title: string; content: string; id: number; callback: (id: number) => void }) => {
     const theme = useSelector((state: any) => state.theme.theme);
     const authHeader = useAuthHeader();
 
@@ -21,7 +21,7 @@ const Note = (props: { title: string; content: string; id: number }) => {
     }, [theme]);
 
     const handleEdit = () => {
-        // TODO: Implement edit note
+        props.callback(props.id);
     };
 
     const handleDelete = async () => {

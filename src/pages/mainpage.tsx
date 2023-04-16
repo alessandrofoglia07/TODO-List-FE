@@ -31,6 +31,9 @@ const MainPage = () => {
     const [writing, setWriting] = useState<boolean>(false);
     const [muiTheme, setMuiTheme] = useState<Theme>(lightTheme);
     const [width, setWidth] = useState<number>(window.innerWidth);
+    const [writeNoteTitle, setWriteNoteTitle] = useState<string>('');
+    const [writeNoteContent, setWriteNoteContent] = useState<string>('');
+    const [writeNoteID, setWriteNoteID] = useState<number | null>(null);
 
     const handleClick = () => {
         setWriting(true);
@@ -65,6 +68,8 @@ const MainPage = () => {
 
     const handleCloseWriteNote = () => {
         setWriting(false);
+        setWriteNoteTitle('');
+        setWriteNoteContent('');
     };
 
     const handleChangeWidthProp = () => {
@@ -75,13 +80,21 @@ const MainPage = () => {
         }
     };
 
+    const handleEditNote = async (id: number) => {
+        const note = notes.find((note) => note._id === id);
+        setWriteNoteID(id);
+        setWriteNoteTitle(note?.title);
+        setWriteNoteContent(note?.content);
+        setWriting(true);
+    };
+
     return (
         <div className='mainPage'>
             <NavBar />
             <Stack direction='column' display='flex' alignItems='center' sx={{ position: 'absolute', mt: '120px', width: '100%' }}>
                 <ThemeProvider theme={muiTheme}>
                     {writing ? (
-                        <WriteNote callback={handleCloseWriteNote} />
+                        <WriteNote initTitle={writeNoteTitle} initContent={writeNoteContent} id={writeNoteID} callback={handleCloseWriteNote} />
                     ) : (
                         <TextField variant='outlined' value='Write a note' sx={{ width: '50vw' }} InputProps={{ readOnly: true }} onClick={handleClick} />
                     )}
@@ -89,7 +102,7 @@ const MainPage = () => {
 
                 <Stack direction='row' display='flex' justifyContent='center' sx={{ width: handleChangeWidthProp(), mt: '20px', flexWrap: 'wrap' }}>
                     {notes.map((note) => (
-                        <Note key={note._id} id={note._id} title={note.title} content={note.content} />
+                        <Note key={note._id} id={note._id} title={note.title} content={note.content} callback={handleEditNote} />
                     ))}
                 </Stack>
             </Stack>

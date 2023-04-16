@@ -5,12 +5,13 @@ import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios';
 import { useAuthUser, useAuthHeader } from 'react-auth-kit';
 
-const WriteNote = (props: { callback: () => void }) => {
+const WriteNote = (props: { callback: () => void; initTitle: string; initContent: string; id: number | null }) => {
     const auth = useAuthUser();
     const authHeader = useAuthHeader();
 
-    const [title, setTitle] = useState<string>('');
-    const [content, setContent] = useState<string>('');
+    const [title, setTitle] = useState<string>(props.initTitle);
+    const [content, setContent] = useState<string>(props.initContent);
+    const [editing, setEditing] = useState<boolean>(false);
     const [width, setWidth] = useState(window.innerWidth);
     const ref = useRef<HTMLDivElement>(null);
 
@@ -19,6 +20,14 @@ const WriteNote = (props: { callback: () => void }) => {
             props.callback();
         }
     };
+
+    useEffect(() => {
+        if (props.initTitle !== '' || props.initContent !== '') {
+            setEditing(true);
+        } else {
+            setEditing(false);
+        }
+    }, [props.initTitle, props.initContent]);
 
     useEffect(() => {
         document.addEventListener('click', handleClickOutside, true);
@@ -32,19 +41,36 @@ const WriteNote = (props: { callback: () => void }) => {
     });
 
     const handleSaveNote = async () => {
-        if (title === '' || content === '') {
-            return;
-        }
+        try {
+            if (title === '' || content === '') {
+                return;
+            }
 
-        const note = {
-            userEmail: auth()?.email,
-            title: title,
-            content: content
-        };
+            if (editing && props.id !== null) {
+                const note = {
+                    userEmail: auth()?.email,
+                    title: title,
+                    content: content
+                };
 
-        const res = await axios.post('http://localhost:5000/api/notes/add', note, { headers: { Authorization: authHeader() } });
-        if (res.data.message === 'Note created') {
-            props.callback();
+                const res = await axios.patch('http://localhost:5000/api/notes/update', { note, id: props.id }, { headers: { Authorization: authHeader() } });
+                if (res.data.message === 'Note updated') {
+                    props.callback();
+                }
+            } else {
+                const note = {
+                    userEmail: auth()?.email,
+                    title: title,
+                    content: content
+                };
+
+                const res = await axios.post('http://localhost:5000/api/notes/add', note, { headers: { Authorization: authHeader() } });
+                if (res.data.message === 'Note created') {
+                    props.callback();
+                }
+            }
+        } catch (err) {
+            console.log(err);
         }
     };
 
