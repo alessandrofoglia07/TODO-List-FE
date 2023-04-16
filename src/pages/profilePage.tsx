@@ -51,7 +51,7 @@ export const ProfileDashboardPage = () => {
     };
 
     return (
-        <div>
+        <div id='ProfilePage'>
             <NavBar />
             <Paper elevation={elevation} className='profileDashboard' id='paper'>
                 <Stack justifyContent='center' spacing={10}>

@@ -113,7 +113,7 @@ const SignUpPage = () => {
     };
 
     return (
-        <div>
+        <div id='SignUpPage'>
             <NavBar />
             <div id='signupForm'>
                 <Paper elevation={elevation} className='accessForms' id='paper' sx={{ borderRadius: '20px' }}>
@@ -161,7 +161,12 @@ const SignUpPage = () => {
                                     InputLabelProps={{ style: { color: 'white', fontSize: 26 } }}
                                     sx={{ width: handleWidthChange() }}
                                 />
-                                <Button type='submit' variant='text' sx={{ fontSize: '2rem', height: '80px', width: '160px', color: 'white', position: 'relative', top: '5vh' }} className='btnSubmit' disabled={!canSubmit}>
+                                <Button
+                                    type='submit'
+                                    variant='text'
+                                    sx={{ fontSize: '2rem', height: '80px', width: '160px', color: 'white', position: 'relative', top: '5vh' }}
+                                    className='btnSubmit'
+                                    disabled={!canSubmit}>
                                     Submit
                                 </Button>
                             </Stack>

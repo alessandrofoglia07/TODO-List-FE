@@ -21,6 +21,66 @@
   color: white;
 }
 
+.noteBtn1 {
+  animation: btnNotHover1 1s;
+  color: inherit;
+}
+
+.noteBtn2 {
+  animation: btnNotHover2 1s;
+  color: inherit;
+}
+
+.noteBtn1:hover {
+  animation: btnHover1 1s;
+  color: #00c75a;
+}
+
+.noteBtn2:hover {
+  animation: btnHover2 1s;
+  color: #bb0000;
+}
+
+@keyframes btnHover1 {
+  0% {
+    color: inherit;
+  }
+
+  100% {
+    color: #00c75a;
+  }
+}
+
+@keyframes btnHover2 {
+  0% {
+    color: inherit;
+  }
+
+  100% {
+    color: #bb0000;
+  }
+}
+
+@keyframes btnNotHover1 {
+  0% {
+    color: #00c75a;
+  }
+
+  100% {
+    color: inherit;
+  }
+}
+
+@keyframes btnNotHover2 {
+  0% {
+    color: #bb0000;
+  }
+
+  100% {
+    color: inherit;
+  }
+}
+
 /* Smaller screen (mobile) */
 @media only screen and (max-width: 1100px) {
   .accessForms {

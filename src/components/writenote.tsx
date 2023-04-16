@@ -73,7 +73,7 @@ const WriteNote = (props: { callback: () => void }) => {
     };
 
     return (
-        <div ref={ref}>
+        <div ref={ref} id='writeNoteMenu'>
             <Paper sx={{ width: handleChangeWidthProp(), height: '300px' }} elevation={12}>
                 <form noValidate autoComplete='off'>
                     <Stack display='flex' alignItems='center'>

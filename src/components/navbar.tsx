@@ -88,7 +88,7 @@ const NavBar = () => {
     });
 
     return (
-        <div>
+        <div id='navbar'>
             <AppBar className='navbar' position='fixed' sx={{ background: 'linear-gradient(90deg, rgba(235,51,73,1) 0%, rgba(244,92,67,1) 100%);', height: '90px' }}>
                 <Toolbar sx={{ width: '100%', height: '100%' }}>
                     <Stack width='100%' height='100%' direction='row' spacing={2} alignItems='center' display='flex'>
